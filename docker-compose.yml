@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    ports:
+      - 5173:5173
+    volumes:
+      - ./src/:/app
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - ./src/:/app
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql-volume:/var/lib/mysql
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    depends_on:
+      - web
+    privileged: true
+    container_name: selenium
+
+volumes:
+  mysql-volume:
