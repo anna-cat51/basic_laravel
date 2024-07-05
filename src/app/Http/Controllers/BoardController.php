@@ -41,7 +41,9 @@ class BoardController extends Controller
         $board = new Board();
         $board->fill($data);
         $board->user_id = Auth::user()->id;
-        $board->save();
+        if ($board->save()) {
+            return redirect('/boards')->with('success', '掲示板を作成しました。');
+        }
 
         return redirect('/boards');
     }
