@@ -1,7 +1,7 @@
 <x-app-layout>
   <div class="m-3 mx-32 grid grid-cols-3 gap-4 flex flex-wrap flex-row">
-    @foreach ($boards as $board)
-    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    @foreach ($boards as $board) <div
+      class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
         <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
       </a>
