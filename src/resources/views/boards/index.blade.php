@@ -8,7 +8,11 @@
     @foreach ($boards as $board) <div
       class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+      @if ($board->image)
+        <img class="rounded-t-lg" src="{{ asset('storage/photos/' . $board->image) }}" alt="Board Image">
+      @else
+        <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="Placeholder Image">
+      @endif
       </a>
       <div class="p-5">
         <a href="#">
