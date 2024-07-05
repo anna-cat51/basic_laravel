@@ -48,4 +48,10 @@ class BoardController extends Controller
             return redirect('/boards')->with('success', '掲示板を作成しました。');
         }
     }
+    public function show($id)
+    {
+        $board = Board::find($id);
+
+        return view('boards.show', compact('board'));
+    }
 }
