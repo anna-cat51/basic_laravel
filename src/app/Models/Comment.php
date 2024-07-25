@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Board extends Model
+class Comment extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function comments()
+    public function board()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Board::class);
     }
 }
