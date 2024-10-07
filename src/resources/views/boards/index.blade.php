@@ -6,7 +6,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="m-3 mx-32 grid grid-cols-3 gap-4 flex flex-wrap flex-row">
+    <div class="m-3 mx-32 grid grid-cols-3 gap-4">
         @foreach ($boards as $board)
             <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="{{ route('boards.show', ['board' => $board->id]) }}">
