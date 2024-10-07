@@ -46,8 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Board::class);
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
     }
 }
