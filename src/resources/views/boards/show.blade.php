@@ -19,8 +19,8 @@
                             <form action="{{ route('boards.destroy', $board->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="ri-delete-bin-line"></i>
+                                <button type="submit" class="btn btn-danger"  onclick="if(!confirm('本当に削除しますか？')){return false};">
+                                  <i class="ri-delete-bin-line"></i>
                                 </button>
                             </form>
                         @endif
