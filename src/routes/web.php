@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/boards/search', [BoardController::class, 'search'])->name('boards.search');
     Route::resource('boards', BoardController::class);
     Route::resource('boards.comments', BoardCommentsController::class)->only(['store', 'destroy']);
     Route::post('/boards/{board}/bookmark', [BookmarksController::class, 'store'])->name('bookmarks.store');

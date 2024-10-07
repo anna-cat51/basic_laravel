@@ -18,6 +18,19 @@ class BoardController extends Controller
         ]);
     }
 
+    public function search()
+    {
+        $q = request('q');
+        $boards = Board::where('title', 'like', '%' . $q . '%')
+            ->orWhere('description', 'like', '%' . $q . '%')
+            ->paginate(20);
+
+        return view('boards.index', [
+            'boards' => $boards,
+            'q' => $q
+        ]);
+    }
+
     public function create()
     {
         return view('boards.create');

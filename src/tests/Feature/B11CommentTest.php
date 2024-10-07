@@ -25,6 +25,14 @@ class CommentViewTest extends TestCase
         $response = $this->actingAs($user)->get(route('boards.show', $board->id));
 
         $response->assertStatus(200)
-                 ->assertSee($comment->body);
+            ->assertSee($comment->body);
+
+        $target_comment = Comment::find($comment->id);
+        $target_comment->delete();
+
+        $comment_deleted_response = $this->actingAs($user)->get(route('boards.show', $board->id));
+
+        $comment_deleted_response->assertStatus(200)
+            ->assertDontSee($comment->body);
     }
 }
