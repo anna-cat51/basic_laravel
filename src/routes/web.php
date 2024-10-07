@@ -5,6 +5,8 @@ use App\Http\Controllers\BoardController;
 use App\Http\Controllers\BoardCommentsController;
 use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UsersController as AdminUsersController;
+use App\Http\Controllers\Admin\BoardsController as AdminBoardsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,15 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::name('admin.')->group(function () {
+            Route::resource('users', AdminUsersController::class)->only(['index', 'edit', 'update', 'destroy']);
+            Route::get('users/search', [AdminUsersController::class, 'search'])->name('users.search');
+            Route::resource('boards', AdminBoardsController::class)->only(['index', 'edit', 'update', 'destroy']);
+            Route::get('boards/search', [AdminBoardsController::class, 'search'])->name('boards.search');
+        });
+    });
 });
 
 Route::middleware('auth')->group(function () {
