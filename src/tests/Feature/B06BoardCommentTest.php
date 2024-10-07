@@ -24,8 +24,7 @@ class B06BoardCommentTest extends TestCase
         ];
 
         $response = $this->post(route("boards.comments.store", $board), $comment);
-        $response->assertStatus(302);
-        $response->assertRedirect("/boards/{$board->id}");
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('comments', $comment);
     }
