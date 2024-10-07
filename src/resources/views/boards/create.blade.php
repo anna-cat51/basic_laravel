@@ -1,4 +1,5 @@
 <x-app-layout>
+  @section('title', '掲示板作成')
   <div class="bg-white w-full h-screen">
     <div class="w-1/2 mx-auto pt-6 px-8 pb-8">
       <h1 class="text-4xl">掲示板作成</h1>

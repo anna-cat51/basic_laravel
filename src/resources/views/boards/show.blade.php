@@ -1,4 +1,5 @@
 <x-app-layout>
+  @section('title', '掲示板詳細')
   <section class="text-gray-600 body-font w-2/3 mx-auto p-2">
     <div class="container my-12 flex px-5 py-24 md:flex-row flex-col items-center bg-white">
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
