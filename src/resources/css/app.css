@@ -1,9 +1,10 @@
+@import "../../node_modules/remixicon/fonts/remixicon.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .top-wrapper {
-  background-image: url('https://flowbite.com/docs/images/blog/image-1.jpg');
-  height: calc(100vh - 134px);
-  background-position: center;
+    background-image: url("https://flowbite.com/docs/images/blog/image-1.jpg");
+    height: calc(100vh - 134px);
+    background-position: center;
 }
