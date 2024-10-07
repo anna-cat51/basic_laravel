@@ -13,8 +13,15 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function board()
     {
         return $this->belongsTo(Board::class);
     }
+
+    protected $fillable = [
+        'board_id',
+        'user_id',
+        'body',
+    ];
 }
