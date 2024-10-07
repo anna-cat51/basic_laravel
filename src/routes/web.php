@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\BoardCommentsController;
 use App\Http\Controllers\BookmarksController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,10 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard.index');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -32,4 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/boards/{board}/bookmark', [BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+Route::prefix('admin')->group(function () {
+    require __DIR__.'/admin.php';
+});
