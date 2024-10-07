@@ -28,6 +28,8 @@
                   </button>
                 </form>
               </div>
+            @else
+              @include('boards.partials.bookmark_button')
             @endif
           </div>
           <p>by {{ $board->user->name }}</p>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\BoardCommentsController;
+use App\Http\Controllers\BookmarksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('boards', BoardController::class);
-    Route::resource('boards.comments', 'App\Http\Controllers\BoardCommentsController')->only(['store', 'destroy']);
+    Route::resource('boards.comments', BoardCommentsController::class)->only(['store', 'destroy']);
+    Route::post('/boards/{board}/bookmark', [BookmarksController::class, 'store'])->name('bookmarks.store');
+    Route::delete('/boards/{board}/bookmark', [BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
 });
 
 require __DIR__.'/auth.php';

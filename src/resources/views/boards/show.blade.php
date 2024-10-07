@@ -23,6 +23,8 @@
                                   <i class="ri-delete-bin-line"></i>
                                 </button>
                             </form>
+                        @else
+                          @include('boards.partials.bookmark_button')
                         @endif
                     </div>
                 </div>
