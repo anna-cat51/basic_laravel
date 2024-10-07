@@ -11,7 +11,7 @@ class BoardController extends Controller
 {
     public function index()
     {
-        $boards = Board::all()->load('bookmarks');
+        $boards = Board::with('bookmarks')->paginate(20);
 
         return view('boards.index', [
             'boards' => $boards
